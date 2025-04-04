@@ -82,60 +82,62 @@ def stabilitySquare(matrix2D):
                 return False
     return True
 
-# Scan input values for each element in the 2D array
-for i in range(rows):
-    values = input().split()
-    for j in range(cols):
-        matrix[i][j] = int(values[j])
 
-matrix = np.array(matrix)
-
-
-elementList = []
-while(not(checkAllRow(matrix) and checkAllColumn(matrix) and checkSquare(matrix))):
-    # if we have 0 we must trun it into 1
-    getOut = False
-    for i in range(rows):
-        for j in range(cols):
-            if matrix[i,j] == 0:
-                matrix[i,j] = 1
-                new = [1, [i,j]]
-                elementList.append(new)
-                getOut = True
-                break
-        if getOut:
-            break
-    # we should create a stable position each iteration
-    getOut2 = False
-    while (not(stabilityAllRow(matrix) and stabilityAllColumn(matrix) and stabilitySquare(matrix))):
-        # check if conditions became false with value 9
-        if (elementList[-1])[0] >= 9: # remove 9
-            valueX = ((elementList[-1])[1])[0]
-            valueY = ((elementList[-1])[1])[1]
-            matrix[valueX, valueY] = 0
-            elementList.pop()
-            # if there is no element in list it means that matrix could not be solve
-            if elementList == []:
-                print("sudoko is wrong!")
-                getOut2 = True
-                break
-            # increment last element
-            valueElement = (elementList[-1])[0]
-            valueX = ((elementList[-1])[1])[0]
-            valueY = ((elementList[-1])[1])[1]
-            matrix[valueX, valueY] = valueElement + 1
-            (elementList[-1])[0] = valueElement + 1
-        # check if conditions became false without value 9
-        else :
-            valueElement = (elementList[-1])[0]
-            valueX = ((elementList[-1])[1])[0]
-            valueY = ((elementList[-1])[1])[1]
-            matrix[valueX, valueY] = valueElement + 1
-            (elementList[-1])[0] = valueElement + 1
-    if getOut2 == True:
-        break
 
 def main():
+    # Scan input values for each element in the 2D array
+    for i in range(rows):
+        values = input().split()
+        for j in range(cols):
+            matrix[i][j] = int(values[j])
+
+    matrix = np.array(matrix)
+
+
+    elementList = []
+    while(not(checkAllRow(matrix) and checkAllColumn(matrix) and checkSquare(matrix))):
+        # if we have 0 we must trun it into 1
+        getOut = False
+        for i in range(rows):
+            for j in range(cols):
+                if matrix[i,j] == 0:
+                    matrix[i,j] = 1
+                    new = [1, [i,j]]
+                    elementList.append(new)
+                    getOut = True
+                    break
+            if getOut:
+                break
+        # we should create a stable position each iteration
+        getOut2 = False
+        while (not(stabilityAllRow(matrix) and stabilityAllColumn(matrix) and stabilitySquare(matrix))):
+            # check if conditions became false with value 9
+            if (elementList[-1])[0] >= 9: # remove 9
+                valueX = ((elementList[-1])[1])[0]
+                valueY = ((elementList[-1])[1])[1]
+                matrix[valueX, valueY] = 0
+                elementList.pop()
+                # if there is no element in list it means that matrix could not be solve
+                if elementList == []:
+                    print("sudoko is wrong!")
+                    getOut2 = True
+                    break
+                # increment last element
+                valueElement = (elementList[-1])[0]
+                valueX = ((elementList[-1])[1])[0]
+                valueY = ((elementList[-1])[1])[1]
+                matrix[valueX, valueY] = valueElement + 1
+                (elementList[-1])[0] = valueElement + 1
+            # check if conditions became false without value 9
+            else :
+                valueElement = (elementList[-1])[0]
+                valueX = ((elementList[-1])[1])[0]
+                valueY = ((elementList[-1])[1])[1]
+                matrix[valueX, valueY] = valueElement + 1
+                (elementList[-1])[0] = valueElement + 1
+        if getOut2 == True:
+            break
+
     print("Here is Solved Sudoku with BackTrack Algorithm")
     for row in matrix:
         for element in row:
