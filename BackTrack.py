@@ -134,10 +134,14 @@ while(not(checkAllRow(matrix) and checkAllColumn(matrix) and checkSquare(matrix)
             (elementList[-1])[0] = valueElement + 1
     if getOut2 == True:
         break
-# print the matrix
-print("Here is Solved Sudoku with BackTrack Algorithm")
-for row in matrix:
-    for element in row:
-        print(str(element) + " ", end="")
-    print()
+
+def main():
+    print("Here is Solved Sudoku with BackTrack Algorithm")
+    for row in matrix:
+        for element in row:
+            print(str(element) + " ", end="")
+        print()
+
+if __name__ == "__main__":
+    main()
     
