@@ -54,54 +54,34 @@ invalid_square_sudoku = np.array([
 ])
 
 def test_checkList_complete():
+    # complete ones
     complete_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     result, remaining = checkList(complete_list)
     assert result is True
     assert remaining == []
-
-def test_checkList_incomplete():
+    # incomplete ones
     incomplete_list = [1, 2, 3, 4, 5, 6, 7, 8, 8]  # Missing 9, duplicate 8
     result, remaining = checkList(incomplete_list)
     assert result is False
     assert sorted(remaining) == [9]
-
-def test_checkList_duplicates():
+    # checkList duplicates
     duplicate_list = [1, 2, 3, 4, 5, 6, 7, 8, 8]  # Duplicate 8
     result, remaining = checkList(duplicate_list)
     assert result is False
     assert 9 in remaining  # 9 is missing because of the duplicate
-
-def test_checkList_empty():
+    # checkList empty
     result, remaining = checkList([])
     assert result is False
     assert sorted(remaining) == [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-def test_checkAllRow_valid():
+def test_checkAllRow():
     assert checkAllRow(valid_sudoku) is True
-
-def test_checkAllRow_invalid():
     assert checkAllRow(invalid_row_sudoku) is False
 
-def test_checkAllColumn_valid():
+def test_checkAllColumn():
     assert checkAllColumn(valid_sudoku) is True
-
-def test_checkAllColumn_invalid():
     assert checkAllColumn(invalid_col_sudoku) is False
 
-def test_checkSquare_valid():
+def test_checkSquare():
     assert checkSquare(valid_sudoku) is True
-
-def test_checkSquare_invalid():
-    assert checkSquare(invalid_square_sudoku) is False
-
-# Valid integration test
-def test_integration_valid_sudoku():
-    assert checkAllRow(valid_sudoku) is True
-    assert checkAllColumn(valid_sudoku) is True
-    assert checkSquare(valid_sudoku) is True
-
-# Invalid integration test
-def test_integration_invalid_sudoku():
-    assert checkAllRow(invalid_row_sudoku) is False
-    assert checkAllColumn(invalid_col_sudoku) is False
     assert checkSquare(invalid_square_sudoku) is False
