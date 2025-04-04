@@ -1,8 +1,7 @@
 import numpy as np
 
-rows = 9
-cols = 9
-matrix = [[0 for _ in range(cols)] for _ in range(rows)]
+ROWS = 9
+COLS = 9
 
 def checkList(myList):
     numList = [1,2,3,4,5,6,7,8,9]
@@ -16,7 +15,8 @@ def checkList(myList):
         return False, numList
 
 def checkAllRow(matrix2D):
-    for i in range(rows):
+    global ROWS
+    for i in range(ROWS):
         row = matrix2D[:,i]
         checked, _ = checkList(row)
         if checked == False:
@@ -24,7 +24,8 @@ def checkAllRow(matrix2D):
     return True
         
 def checkAllColumn(matrix2D):
-    for i in range(cols):
+    global ROWS
+    for i in range(COLS):
         col = matrix2D[i,:]
         checked, _ = checkList(col)
         if checked == False:
@@ -56,14 +57,16 @@ def checkStability(myList):
     return True
 
 def stabilityAllRow(matrix2D):
-    for i in range(rows):
+    global ROWS
+    for i in range(ROWS):
         row = matrix2D[:,i]
         if checkStability(row) == False:
             return False
     return True
         
 def stabilityAllColumn(matrix2D):
-    for i in range(cols):
+    global COLS
+    for i in range(COLS):
         col = matrix2D[i,:]
         if checkStability(col) == False:
             return False
@@ -82,13 +85,14 @@ def stabilitySquare(matrix2D):
                 return False
     return True
 
-
-
 def main():
+    global ROWS, COLS
+    matrix = [[0 for _ in range(COLS)] for _ in range(ROWS)]
+
     # Scan input values for each element in the 2D array
-    for i in range(rows):
+    for i in range(ROWS):
         values = input().split()
-        for j in range(cols):
+        for j in range(COLS):
             matrix[i][j] = int(values[j])
 
     matrix = np.array(matrix)
@@ -98,8 +102,8 @@ def main():
     while(not(checkAllRow(matrix) and checkAllColumn(matrix) and checkSquare(matrix))):
         # if we have 0 we must trun it into 1
         getOut = False
-        for i in range(rows):
-            for j in range(cols):
+        for i in range(ROWS):
+            for j in range(COLS):
                 if matrix[i,j] == 0:
                     matrix[i,j] = 1
                     new = [1, [i,j]]
