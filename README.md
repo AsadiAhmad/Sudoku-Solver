@@ -57,3 +57,8 @@ https://youtu.be/VpZHaJULavM
 
 this code read 9 * 9 sudoku that each 0 indicates the empty cells in sudoku and we want to fill all empty cells (all zeroes) with 1 to 9 numbers if the sudoku is wrong one code will say that this sudoku is wrong one (like duplicated values in rows or columns)  
 
+
+## License
+
+This project is licensed under the MIT License.
+
