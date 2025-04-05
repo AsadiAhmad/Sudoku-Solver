@@ -14,5 +14,8 @@ Solving every Sudoku with BackTrack Algorithm.
 
 ## Tutorial Video
 
-<iframe width="560" height="315" src="https://youtu.be/VpZHaJULavM" frameborder="0" allowfullscreen></iframe>
+<video width="560" height="315" controls>
+  <source src="https://youtu.be/VpZHaJULavM" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
